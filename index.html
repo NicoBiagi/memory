@@ -3,7 +3,13 @@
 
 <style>
 .memory_box{
-  background-color:orange; width: 200px; height: 200px;
+  background-color:orange;
+  width: 200px;
+  height: 200px;
+  text-align: center;   /* this makes it horizontally center*/
+  line-height: 200px;   /* this makes it vertically center*/
+  font-size: 50px;
+
 
 }
 </style>
@@ -49,6 +55,20 @@ src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 };
 
 $(".memory_box").on("click",function(){
-  alert("You clicked a box")
+  var this_index  = this.id.replace("box_","");
+  var this_letter = card_obj["card_letters"][this_index];
+  $(this).html(this_letter);
+
+  /*
+    Add the box id to the list of selected boxes
+  */
+  card_obj["selected_boxes"].push(this.id);
+
+  /*
+    Add the selected letter to the list of visible letters
+  */
+  card_obj["visible_letters"].push(this_letter);
+
+  console.log(card_obj);
 });
 </script>
